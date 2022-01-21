@@ -1,0 +1,170 @@
+Kubernetes
+
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS H:\DevOpsTraining\Docker\Final> 
+PS H:\DevOpsTraining\Docker\Final>
+PS H:\DevOpsTraining\Docker\Final>
+PS H:\DevOpsTraining\Docker\Final>
+
+ Session contents restored from 21/1/2022 at 8:44:53 am 
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS H:\DevOpsTraining\Docker\Final> 
+PS H:\DevOpsTraining\Docker\Final>
+PS H:\DevOpsTraining\Docker\Final> cd kubernetes
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl apply -f pod.yaml
+pod/demo created
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl get pods
+NAME                       READY   STATUS    RESTARTS      AGE
+bb-demo-589d9c588f-dwmkm   1/1     Running   5 (16h ago)   10d
+demo                       1/1     Running   0             17s
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl logs demo
+PING 8.8.8.8 (8.8.8.8): 56 data bytes
+64 bytes from 8.8.8.8: seq=0 ttl=37 time=69.276 ms
+64 bytes from 8.8.8.8: seq=1 ttl=37 time=18.489 ms
+64 bytes from 8.8.8.8: seq=2 ttl=37 time=18.353 ms
+64 bytes from 8.8.8.8: seq=3 ttl=37 time=23.954 ms
+64 bytes from 8.8.8.8: seq=4 ttl=37 time=23.161 ms
+64 bytes from 8.8.8.8: seq=5 ttl=37 time=18.123 ms
+64 bytes from 8.8.8.8: seq=6 ttl=37 time=18.213 ms
+64 bytes from 8.8.8.8: seq=7 ttl=37 time=18.699 ms
+64 bytes from 8.8.8.8: seq=17 ttl=37 time=19.166 ms
+64 bytes from 8.8.8.8: seq=18 ttl=37 time=21.749 ms
+64 bytes from 8.8.8.8: seq=19 ttl=37 time=19.096 ms
+64 bytes from 8.8.8.8: seq=20 ttl=37 time=19.194 ms
+64 bytes from 8.8.8.8: seq=21 ttl=37 time=19.347 ms
+64 bytes from 8.8.8.8: seq=22 ttl=37 time=18.554 ms
+64 bytes from 8.8.8.8: seq=23 ttl=37 time=18.937 ms
+64 bytes from 8.8.8.8: seq=24 ttl=37 time=19.020 ms
+64 bytes from 8.8.8.8: seq=25 ttl=37 time=19.095 ms
+64 bytes from 8.8.8.8: seq=26 ttl=37 time=18.271 ms
+64 bytes from 8.8.8.8: seq=27 ttl=37 time=19.807 ms
+64 bytes from 8.8.8.8: seq=28 ttl=37 time=21.471 ms
+64 bytes from 8.8.8.8: seq=29 ttl=37 time=18.430 ms
+64 bytes from 8.8.8.8: seq=30 ttl=37 time=18.221 ms
+64 bytes from 8.8.8.8: seq=31 ttl=37 time=18.295 ms
+64 bytes from 8.8.8.8: seq=32 ttl=37 time=20.495 ms
+64 bytes from 8.8.8.8: seq=33 ttl=37 time=18.776 ms
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl delete -f pod.yaml
+pod "demo" deleted
+PS H:\DevOpsTraining\Docker\Final\kubernetes>
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker swarm init
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service create --name demo alpine:3.5 ping 8.8.8.8
+y86ilfs47sbi4icdfwpmoerx6
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================>]
+verify: Service converged
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service ps demo
+ID             NAME      IMAGE        NODE             DESIRED STATE   CURRENT STATE            ERROR     PORTS
+pxtfpkqiuuqo   demo.1    alpine:3.5   docker-desktop   Running         Running 20 seconds ago
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service logs demo
+demo.1.pxtfpkqiuuqo@docker-desktop    | PING 8.8.8.8 (8.8.8.8): 56 data bytes
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=0 ttl=37 time=18.183 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=1 ttl=37 time=18.417 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=2 ttl=37 time=19.947 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=3 ttl=37 time=22.922 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=4 ttl=37 time=18.803 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=5 ttl=37 time=18.420 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=6 ttl=37 time=21.319 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=7 ttl=37 time=20.032 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=8 ttl=37 time=20.595 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=9 ttl=37 time=18.387 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=10 ttl=37 time=28.612 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=11 ttl=37 time=18.892 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=12 ttl=37 time=18.267 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=13 ttl=37 time=18.082 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=14 ttl=37 time=17.600 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=15 ttl=37 time=18.777 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=16 ttl=37 time=19.309 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=17 ttl=37 time=19.498 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=18 ttl=37 time=18.565 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=19 ttl=37 time=19.507 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=20 ttl=37 time=18.444 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=21 ttl=37 time=18.928 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=22 ttl=37 time=18.965 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=23 ttl=37 time=22.096 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=24 ttl=37 time=19.088 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=25 ttl=37 time=19.638 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=26 ttl=37 time=17.983 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=27 ttl=37 time=18.338 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=28 ttl=37 time=18.781 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=29 ttl=37 time=19.660 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=30 ttl=37 time=17.939 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=31 ttl=37 time=20.836 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=32 ttl=37 time=19.783 ms
+demo.1.pxtfpkqiuuqo@docker-desktop    | 64 bytes from 8.8.8.8: seq=33 ttl=37 time=18.551 ms
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service rm demo
+demo
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes>
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl apply -f bb.yaml
+deployment.apps/bb-demo created
+service/bb-entrypoint created
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl get deployments
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+bb-demo   1/1     1            0           2m3s
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl get services
+NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+bb-entrypoint   NodePort    10.99.131.75   <none>        3000:30001/TCP   4m31s
+kubernetes      ClusterIP   10.96.0.1      <none>        443/TCP          12d
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> kubectl delete -f bb.yaml
+deployment.apps "bb-demo" deleted
+service "bb-entrypoint" deleted
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes>
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker stack deploy -c bb-stack.yaml demo
+Creating service demo_bb-app
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service ls
+ID             NAME          MODE         REPLICAS   IMAGE                    PORTS
+2snjsnvcpggf   demo_bb-app   replicated   1/1        getting-started:latest   *:8000->3000/tcp
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker stack rm demo
+Removing service demo_bb-app
+Removing network demo_default
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes>
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service create --replicas 1 --name my-prometheus `
+>> --mount type=bind,source=H:\DevOpsTraining\Docker\Final\Kubernetes\tmp\prometheus.yml,destination=/etc/prometheus/prometheus.yml `
+>> --publish published=9090,target=9090,protocol=tcp `
+>> prom/prometheus
+qitu514k528lq1lbucjjl1xg6
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================>]
+verify: Service converged
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service create `
+>> --replicas 10 `
+>> --name ping_service `
+>> alpine ping docker.com
+nd9ruson7mwtfl14x15uigx1e
+overall progress: 10 out of 10 tasks
+1/10: running   [==================================================>]
+2/10: running   [==================================================>]
+3/10: running   [==================================================>]
+4/10: running   [==================================================>]
+5/10: running   [==================================================>]
+6/10: running   [==================================================>]
+7/10: running   [==================================================>]
+8/10: running   [==================================================>]
+9/10: running   [==================================================>]
+10/10: running   [==================================================>]
+verify: Service converged
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes> docker service remove ping_service
+ping_service
+PS H:\DevOpsTraining\Docker\Final\kubernetes> 
+PS H:\DevOpsTraining\Docker\Final\kubernetes>
