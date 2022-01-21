@@ -1,0 +1,15 @@
+Basic Git Commands
+
+git config
+git --version
+git init
+git add
+git status
+git commit
+git push <repo url>
+git clone <repo url>
+git remote add <remote name> <repo url>
+git fetch <remote name>
+
+
+
